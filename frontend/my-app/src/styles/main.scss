@@ -1,0 +1,15 @@
+@import 'variables';
+@import 'mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: map-get($colors, background);
+  color: map-get($colors, text, primary);
+  line-height: 1.5;
+}

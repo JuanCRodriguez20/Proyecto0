@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Admin12345
+      POSTGRES_DB: proyecto0
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
+  backend:
+    build:
+      context: .
+      dockerfile: DockerfileBack
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Admin12345
+      POSTGRES_DB: proyecto0
+      DB_HOST: postgres
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api:/app
+    depends_on:
+      - postgres
+  
+  frontend:
+    build:
+      context: .
+      dockerfile: DockerfileFront
+    restart: always
+    environment:
+      REACT_APP_API_URL: http://localhost:8080
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/my-app:/app
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

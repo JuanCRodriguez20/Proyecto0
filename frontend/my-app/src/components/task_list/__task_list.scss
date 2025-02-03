@@ -1,0 +1,73 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.task-list {
+  flex: 1;
+  background-color: map-get($colors, surface);
+  border-radius: 0.5rem;
+  @include shadow(1);
+
+  &__header {
+    padding: map-get($spacing, md) map-get($spacing, xl);
+    border-bottom: 1px solid map-get($colors, border);
+
+    h2 {
+      font-size: map-get($font-sizes, lg);
+      font-weight: 500;
+    }
+  }
+
+  &__item {
+    padding: map-get($spacing, xl);
+    border-bottom: 1px solid map-get($colors, border);
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: map-get($colors, background);
+    }
+
+    &-content {
+      @include flex(row, space-between, flex-start);
+    }
+
+    &-title {
+      font-size: map-get($font-sizes, sm);
+      font-weight: 500;
+      color: map-get($colors, text, primary);
+    }
+
+    &-description {
+      margin-top: map-get($spacing, xs);
+      font-size: map-get($font-sizes, sm);
+      color: map-get($colors, text, secondary);
+    }
+
+    &-meta {
+      margin-top: map-get($spacing, sm);
+      @include flex(row, flex-start, center);
+      gap: map-get($spacing, sm);
+    }
+
+    &-tag {
+      padding: map-get($spacing, xs) map-get($spacing, sm);
+      border-radius: 999px;
+      font-size: map-get($font-sizes, xs);
+      font-weight: 500;
+
+      &--category {
+        background-color: #dbeafe;
+        color: #1e40af;
+      }
+
+      &--status {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+    }
+
+    &-date {
+      font-size: map-get($font-sizes, sm);
+      color: map-get($colors, text, tertiary);
+    }
+  }
+}

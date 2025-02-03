@@ -1,0 +1,63 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.navbar {
+  background-color: map-get($colors, surface);
+  @include shadow(1);
+
+  &__container {
+    @include flex(row, space-between, center);
+    max-width: map-get($breakpoints, xl);
+    margin: 0 auto;
+    padding: map-get($spacing, md) map-get($spacing, lg);
+    height: 4rem;
+  }
+
+  &__brand {
+    @include flex(row, flex-start, center);
+    gap: map-get($spacing, md);
+
+    &-text {
+      font-size: map-get($font-sizes, xl);
+      font-weight: 600;
+      color: map-get($colors, text, primary);
+    }
+  }
+
+  &__search {
+    position: relative;
+    
+    input {
+      width: 16rem;
+      padding: map-get($spacing, sm) map-get($spacing, xl);
+      border: 1px solid map-get($colors, border);
+      border-radius: 0.5rem;
+      font-size: map-get($font-sizes, sm);
+
+      &:focus {
+        outline: none;
+        border-color: map-get($colors, primary);
+      }
+    }
+
+    svg {
+      position: absolute;
+      left: map-get($spacing, sm);
+      top: 50%;
+      transform: translateY(-50%);
+      color: map-get($colors, text, tertiary);
+    }
+  }
+
+  &__actions {
+    @include flex(row, flex-end, center);
+    gap: map-get($spacing, md);
+
+    &-profile {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+}

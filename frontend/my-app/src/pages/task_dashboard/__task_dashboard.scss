@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.task-dashboard {
+  min-height: 100vh;
+  background-color: map-get($colors, background);
+
+  &__content {
+    padding-top: 4rem; // Match navbar height
+  }
+
+  &__main {
+    display: flex;
+    gap: map-get($spacing, xl);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: map-get($spacing, lg);
+  }
+}
+
+body.modal-open {
+  overflow: hidden;
+}

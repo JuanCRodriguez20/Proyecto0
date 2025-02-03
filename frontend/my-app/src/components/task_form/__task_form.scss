@@ -1,0 +1,194 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.task-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include flex(row, center, center);
+  padding: map-get($spacing, md);
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.task-form {
+  width: 100%;
+  max-width: 32rem;
+  background-color: map-get($colors, surface);
+  border-radius: 1rem;
+  @include shadow(2);
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease-out;
+
+  &__header {
+    @include flex(row, space-between, center);
+    padding: map-get($spacing, lg) map-get($spacing, xl);
+    border-bottom: 1px solid map-get($colors, border);
+  }
+
+  &__title {
+    font-size: map-get($font-sizes, lg);
+    font-weight: 600;
+    color: map-get($colors, text, primary);
+  }
+
+  &__close {
+    @include flex(row, center, center);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.375rem;
+    border: none;
+    background: none;
+    color: map-get($colors, text, secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: map-get($colors, background);
+      color: map-get($colors, text, primary);
+    }
+  }
+
+  &__content {
+    padding: map-get($spacing, xl);
+    overflow-y: auto;
+  }
+
+  &__group {
+    &:not(:first-child) {
+      margin-top: map-get($spacing, lg);
+    }
+  }
+
+  &__row {
+    @include flex(row, space-between, flex-start);
+    gap: map-get($spacing, lg);
+    margin-top: map-get($spacing, lg);
+
+    .task-form__group {
+      flex: 1;
+      margin-top: 0;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: map-get($font-sizes, sm);
+    font-weight: 500;
+    color: map-get($colors, text, primary);
+    margin-bottom: map-get($spacing, xs);
+
+    &-content {
+      @include flex(row, flex-start, center);
+      gap: map-get($spacing, xs);
+
+      svg {
+        color: map-get($colors, text, secondary);
+      }
+    }
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    width: 100%;
+    padding: map-get($spacing, sm) map-get($spacing, md);
+    border: 1px solid map-get($colors, border);
+    border-radius: 0.5rem;
+    font-size: map-get($font-sizes, sm);
+    color: map-get($colors, text, primary);
+    transition: all 0.2s ease;
+    background-color: map-get($colors, surface);
+
+    &:focus {
+      outline: none;
+      border-color: map-get($colors, primary);
+      box-shadow: 0 0 0 2px rgba(map-get($colors, primary), 0.1);
+    }
+
+    &::placeholder {
+      color: map-get($colors, text, tertiary);
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 6rem;
+    line-height: 1.5;
+  }
+
+  &__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right map-get($spacing, sm) center;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+
+    &:focus {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233B82F6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    }
+  }
+
+  &__actions {
+    @include flex(row, flex-end, center);
+    gap: map-get($spacing, md);
+    margin-top: map-get($spacing, xl);
+    padding-top: map-get($spacing, lg);
+    border-top: 1px solid map-get($colors, border);
+  }
+
+  &__button {
+    padding: map-get($spacing, sm) map-get($spacing, xl);
+    border-radius: 0.5rem;
+    font-size: map-get($font-sizes, sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--primary {
+      background-color: map-get($colors, primary);
+      color: map-get($colors, surface);
+      border: none;
+
+      &:hover {
+        background-color: map-get($colors, primary-dark);
+      }
+    }
+
+    &--secondary {
+      background-color: transparent;
+      color: map-get($colors, text, primary);
+      border: 1px solid map-get($colors, border);
+
+      &:hover {
+        background-color: map-get($colors, background);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

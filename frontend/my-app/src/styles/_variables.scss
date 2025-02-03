@@ -1,0 +1,40 @@
+$colors: (
+  primary: #3b82f6,
+  primary-dark: #2563eb,
+  secondary: #64748b,
+  background: #f9fafb,
+  surface: #ffffff,
+  text: (
+    primary: #111827,
+    secondary: #4b5563,
+    tertiary: #9ca3af
+  ),
+  border: #e5e7eb,
+  error: #ef4444,
+  success: #22c55e
+);
+
+$spacing: (
+  xs: 0.25rem,
+  sm: 0.5rem,
+  md: 1rem,
+  lg: 1.5rem,
+  xl: 2rem,
+  xxl: 3rem
+);
+
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px
+);
+
+$font-sizes: (
+  xs: 0.75rem,
+  sm: 0.875rem,
+  base: 1rem,
+  lg: 1.125rem,
+  xl: 1.25rem,
+  xxl: 1.5rem
+);

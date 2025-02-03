@@ -1,0 +1,21 @@
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.11
+
+WORKDIR /app
+
+RUN pip install "poetry==1.5.1"
+
+# Ahora COPY los archivos desde la raíz
+COPY poetry.lock /app/
+COPY pyproject.toml /app/
+
+RUN poetry config virtualenvs.create false
+RUN poetry install
+
+COPY api/config/. /app/config
+COPY api/models/. /app/models
+COPY api/routers/. /app/routers
+COPY api/schema/. /app/schema
+
+COPY api/app.py /app/app.py
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
